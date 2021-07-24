@@ -16,6 +16,8 @@ var foodObj;
       database=firebase.database();
      createCanvas(500,500); 
 
+     foodObj = new Food();
+     
      dog=createSprite(250,300,150,150);
      dog.addImage(dogImg);
      dog.scale=0.15; 
@@ -70,7 +72,7 @@ var foodObj;
 //function to update food stock and last fed time
 function feedDog()
 {
-   dog.addImage(happyDog);
+   dog.addImage(dogImg1);
  
    foodObj.updateFoodStock(foodObj.getFoodStock()-1);
    database.ref('/').update({
@@ -91,13 +93,13 @@ function addFoods()
  }
 
 //Function to write values in DB
-    function writeStock(x)
- {
-    if(x<=0){ x=0; 
- }
-  else
+function writeStock(x)
+{
+   if(x<=0){ x=0; 
+}
+ else
 { 
-    x=x-1; 
+   x=x-1; 
 } 
-   database.ref('/').update({ Food:x })
+  database.ref('/').update({ Food:x })
 }
